@@ -8,13 +8,40 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
+
 public class NonuniformRandomNumber {
 
   public static int
   nonuniformRandomNumberGeneration(List<Integer> values,
                                    List<Double> probabilities) {
-    // TODO - you fill in here.
-    return 0;
+    for(int i=1;i<probabilities.size();++i){
+      probabilities.set(i, probabilities.get(i) + probabilities.get(i-1));
+    }
+    Random random = new Random();
+    Double rand = random.nextDouble();
+    int index = binarySearch(probabilities, rand);
+//    for(int i=0;i<probabilities.size();++i){
+//      if(rand < probabilities.get(i)){
+//        index = i;
+//        break;
+//      }
+//    }
+    return values.get(index);
+  }
+
+  public static int binarySearch(List<Double> list, double rand){
+    int beg = 0, en = list.size() - 1;
+    while(beg < en){
+      int mid = beg + (en - beg)/2;
+      if(list.get(mid) < rand){
+        beg = mid + 1;
+      }
+      else {
+        en = mid;
+      }
+    }
+    return beg;
   }
   private static boolean nonuniformRandomNumberGenerationRunner(
       TimedExecutor executor, List<Integer> values, List<Double> probabilities)
