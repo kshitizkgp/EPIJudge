@@ -5,23 +5,39 @@ import epi.test_framework.GenericTest;
 import epi.test_framework.TestFailure;
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.Stack;
+
 public class StackWithMax {
 
   public static class Stack {
+    java.util.Stack<Integer> st = new java.util.Stack<>();
+    java.util.Stack<Integer> max = new java.util.Stack<>();
+
     public boolean empty() {
-      // TODO - you fill in here.
-      return true;
+      return st.isEmpty();
     }
     public Integer max() {
-      // TODO - you fill in here.
-      return 0;
+      return max.peek();
     }
     public Integer pop() {
-      // TODO - you fill in here.
-      return 0;
+      int ans;
+      if(max.peek() == st.peek()){
+        st.pop();
+        ans = max.pop();
+      }
+      else{
+        ans = st.pop();
+      }
+      return ans;
     }
     public void push(Integer x) {
-      // TODO - you fill in here.
+      if(max.size() == 0 || x > max.peek()){
+        max.push(x);
+        st.push(x);
+      }
+      else{
+        st.push(x);
+      }
       return;
     }
   }

@@ -9,20 +9,16 @@ public class CircularQueue {
   public static class Queue {
     public Queue(int capacity) {}
     public void enqueue(Integer x) {
-      // TODO - you fill in here.
       return;
     }
     public Integer dequeue() {
-      // TODO - you fill in here.
       return 0;
     }
     public int size() {
-      // TODO - you fill in here.
       return 0;
     }
     @Override
     public String toString() {
-      // TODO - you fill in here.
       return super.toString();
     }
   }
